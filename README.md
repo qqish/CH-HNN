@@ -34,8 +34,18 @@ Baseline model:
 python demo_test.py --dataset 'cifar100'
 ```
 
-4. For training the ANNs to learn related-episode knowledge, run the following command under the `ANN_for_episode_inference` directory:
+4. To train the ANNs for learning related-episode knowledge, follow these steps in the ANN_for_episode_inference directory:
+
+(1) **Generate Episode Similarities**
+First, generate the task similarities across episodes using the following command:
+```bash
+    python generate_task_similarity.py
+```
+(2) **Train the ANN with Generated Similarities**
+After generating the similarities, use them to train the ANN and produce modulation signals with similar correlations. Run the following command:
+Then use the similarity to train ANN generate modultion signals with similar correlation.
 ```bash
     python manager.py
 ```
-By changing the `_continue`, `_enhanced`, or `_task` tail marker in the `manager.py` file, the ANN can be trained under different designs. 
+(3) **Customize the Training Design**
+You can modify the training design by changing the tail markers (_continue, _enhanced, or _task) in the manager.py file. Each marker corresponds to a different training setup for the ANN.
