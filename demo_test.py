@@ -116,7 +116,30 @@ def main():
         acc_all.append(test_accuracy)
     acc_all=np.array(acc_all)
     # np.save('./Results/acc_all_sample.npy', acc_all)
-    acc_5_class=np.average(acc_all.reshape(-1, 5), axis=1)
-    print('Mean Accuracy:',acc_all, np.mean(acc_all), acc_5_class)
+    # acc_5_class=np.average(acc_all.reshape(-1, 5), axis=1)
+    # print('Mean Accuracy:',acc_all, np.mean(acc_all), acc_5_class)
 
-main()
+    print('Mean Accuracy:', acc_all, np.mean(acc_all))
+
+    # 调用绘图函数
+    plot_results(acc_all)
+
+def plot_results(acc_all):
+
+    plt.figure(figsize=(8, 5))
+    plt.plot(acc_all, color='red',linewidth=5)
+    plt.title('Test Accuracy Over Tasks')
+    plt.xlabel('Class ID at the final stage')
+    plt.ylabel('Accuracy')
+    plt.xlim(0,19)
+    plt.xticks(np.arange(0,20,1), np.arange(1,21,1))
+    plt.ylim(0, 100)
+    plt.legend()
+    plt.grid()
+
+    # 保存图像
+    plt.savefig('test_accuracy_results.png')
+    plt.show()
+
+if __name__ == "__main__":
+    main()
