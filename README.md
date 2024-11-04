@@ -1,51 +1,79 @@
-**Code repository for CH-HNN project**, submitted alongside a manuscript to **Nature Communications**.
+## **CH-HNN Project Code Repository**
 
-## Overview
-**CH-HNN** is a neural network model designed for **hybrid neural networks for continual learning**, inspired by **cortico-hippocampal circuits**. This repository contains the code necessary to replicate the experiments and analyses described in the associated manuscript.
+**CH-HNN** is a neural network model for **hybrid neural networks in continual learning**, inspired by **cortico-hippocampal circuits**. This repository contains the code needed to replicate the experiments described in the associated manuscript submitted to **Nature Communications**.
 
-## Usage
-1. For getting the embedding features of **CIFAR-100** and **TinyImageNet**, run `get_embedding_clip.py`.
+## **System Requirements**
+- **Operating System**: Ubuntu 20.04
+- **Python Version**: 3.9.12
+- **Dependencies**:
 
-2. For training Spiking Neural Networks (SNNs) under the guidance of pre-trained Artificial Neural Network (ANNs) within CH-HNN, run the following command:
+matplotlib==3.5.1
+numpy==1.21.5
+pygame==2.5.2
+scikit_learn==1.0.2
+torch==1.11.0+cu115
+torchvision==0.12.0+cu115
+tqdm==4.64.0
+
+**Installation**
+
+Clone the repository and install the required packages:
+```bash
+git clone https://github.com/qqish/CH-HNN
+cd CH-HNN
+pip install -r requirements.txt
+
+**Preparation**
+1. To extract embedding features from **CIFAR-100** or **TinyImageNet**, run:
+```bash
+python get_embedding_clip.py
+```
+This process takes about 5 minutes.
+
+**Example Demo**
+2. To demonstrate class-incremental learning on CIFAR-100 with CH-HNN model, execute:
+CH-HNN model:
+```bash
+python demo_test.py --ep-inference --dataset 'cifar100'
+```
+This will produce accuracy results for each of the 20 classes, saving them as "test_accuracy_results.png":
+![Test Accuracy Results](images/CH-HNN_results.png)
+
+For the baseline model, use:
+
+Baseline model:
+```bash
+python demo_test.py --dataset 'cifar100'
+```
+Results are similar to the above:
+ ![Test Accuracy Results](images/CH-HNN_results.png)
+
+** Training Method **
+3. To train CH-HNN model, run::
 
 ```bash
 python manager.py --ep-inference --dataset 'cifar100' --scenario 'class-incre'
 ```
-We provide pretrained ANN models in the `ANN_Prior` directory, which includes datasets for:
+Pretrained ANN models are available in the ANN_Prior directory for the following datasets:
 
 - **sMNIST**
 - **pMNIST**
 - **CIFAR-100**
 - **Tiny-ImageNet**
 
-These datasets can be selected by using the `--dataset` flag.
+Select datasets with the `--dataset` flag and learning scenarios (class-incremental or task-incremental) with the `--scenario` flag.
 
-These datasets are provided for both **class-incremental** and **task-incremental** learning scenarios, which can be selected by using the `--scenario` flag.
+The `ANN_Prior` directory also contains ANN models trained on **ImageNet**.
 
-Additionally, the `ANN_Prior` directory contains ANN models trained with prior knowledge from **ImageNet** and designed for **continual learning**. These models can also be found in the `ANN_Prior` directory.
+4. To train ANNs for learning related-episode knowledge: 
 
-3. For testing the class-incremental learning in CIFAR-100, and Tiny-ImageNet dataset, run the following command:
-CH-HNN model:
-```bash
-python demo_test.py --ep-inference --dataset 'cifar100'
-```
-Baseline model:
-```bash
-python demo_test.py --dataset 'cifar100'
-```
-
-4. To train the ANNs for learning related-episode knowledge, follow these steps in the ANN_for_episode_inference directory:
-
-(1) **Generate Episode Similarities**
-First, generate the task similarities across episodes using the following command:
+(1) **Generate Episode Similarities**:
 ```bash
     python generate_task_similarity.py
 ```
-(2) **Train the ANN with Generated Similarities**
-After generating the similarities, use them to train the ANN and produce modulation signals with similar correlations. Run the following command:
-Then use the similarity to train ANN generate modultion signals with similar correlation.
+(2) **Train the ANN with Generated Similarities**:
 ```bash
     python manager.py
 ```
-(3) **Customize the Training Design**
-You can modify the training design by changing the tail markers (_continue, _enhanced, or _task) in the manager.py file. Each marker corresponds to a different training setup for the ANN.
+(3) **Customize the Training Design**:
+(_continue, _enhanced, or _task) in 'manager.py'  to change the training setup for ANNs.
