@@ -22,20 +22,24 @@ Clone the repository and install the required packages:
 git clone https://github.com/qqish/CH-HNN
 cd CH-HNN
 pip install -r requirements.txt
+```
 
 **Preparation**
-1. To extract embedding features from **CIFAR-100** or **TinyImageNet**, run:
+
+To extract embedding features from **CIFAR-100** or **TinyImageNet**, run:
 ```bash
 python get_embedding_clip.py
 ```
 This process takes about 5 minutes.
 
 **Example Demo**
-2. To demonstrate class-incremental learning on CIFAR-100 with CH-HNN model, execute:
+
+To demonstrate class-incremental learning on CIFAR-100 with CH-HNN model, execute:
 CH-HNN model:
 ```bash
 python demo_test.py --ep-inference --dataset 'cifar100'
 ```
+
 This will produce accuracy results for each of the 20 classes, saving them as "test_accuracy_results.png":
 ![Test Accuracy Results](images/CH-HNN_results.png)
 
@@ -45,12 +49,13 @@ Baseline model:
 ```bash
 python demo_test.py --dataset 'cifar100'
 ```
+
 Results are similar to the above:
  ![Test Accuracy Results](images/CH-HNN_results.png)
 
 ** Training Method **
-3. To train CH-HNN model, run::
 
+To train CH-HNN model, run::
 ```bash
 python manager.py --ep-inference --dataset 'cifar100' --scenario 'class-incre'
 ```
@@ -65,7 +70,7 @@ Select datasets with the `--dataset` flag and learning scenarios (class-incremen
 
 The `ANN_Prior` directory also contains ANN models trained on **ImageNet**.
 
-4. To train ANNs for learning related-episode knowledge: 
+To train ANNs for learning related-episode knowledge: 
 
 (1) **Generate Episode Similarities**:
 ```bash
