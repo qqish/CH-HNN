@@ -49,7 +49,7 @@ python demo_test.py --dataset 'cifar100'
 ```
 
 Results are similar to the above:
- ![Test Accuracy Results](images/CH-HNN_results.png)
+ ![Test Accuracy Results](images/Baseline_results.png)
 
 ## **Training Method**
 
