@@ -15,7 +15,7 @@ torch==1.11.0+cu115
 torchvision==0.12.0+cu115
 tqdm==4.64.0
 
-##**Installation**
+## **Installation**
 
 Clone the repository and install the required packages:
 ```bash
@@ -24,7 +24,7 @@ cd CH-HNN
 pip install -r requirements.txt
 ```
 
-##**Preparation**
+## **Preparation**
 
 To extract embedding features from **CIFAR-100** or **TinyImageNet**, run:
 ```bash
@@ -32,7 +32,7 @@ python get_embedding_clip.py
 ```
 This process takes about 5 minutes.
 
-##**Example Demo**
+## **Example Demo**
 
 To demonstrate class-incremental learning on CIFAR-100 with CH-HNN model, execute:
 CH-HNN model:
@@ -44,8 +44,6 @@ This will produce accuracy results for each of the 20 classes, saving them as "t
 ![Test Accuracy Results](images/CH-HNN_results.png)
 
 For the baseline model, use:
-
-Baseline model:
 ```bash
 python demo_test.py --dataset 'cifar100'
 ```
@@ -53,9 +51,9 @@ python demo_test.py --dataset 'cifar100'
 Results are similar to the above:
  ![Test Accuracy Results](images/CH-HNN_results.png)
 
-##** Training Method **
+## **Training Method**
 
-To train CH-HNN model, run::
+To train CH-HNN model, run:
 ```bash
 python manager.py --ep-inference --dataset 'cifar100' --scenario 'class-incre'
 ```
