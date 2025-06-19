@@ -66,6 +66,7 @@ def task_CH_HNN():
                                             cmd+=' --wins 10 '
                                             cmd+=' --epochs-per-task 5 '
                                             cmd+=' --lr 0.1 '
+                                            cmd+=' --tau 1.0 '
                                             hidden_neurons=64
                                             ann_channel=256
                                         elif dataset == 'tinyimage':
@@ -77,6 +78,7 @@ def task_CH_HNN():
                                             cmd+=' --batch-size 128 '
                                             cmd+=' --wins 10 '
                                             cmd+=' --epochs-per-task 5 '
+                                            cmd+=' --tau 1.0 '
                                             cmd+=' --lr 0.1 '
                                             hidden_neurons=64
                                             ann_channel=256
@@ -90,11 +92,17 @@ def task_CH_HNN():
                                             cmd+=' --wins 10 '
                                             cmd+=' --epochs-per-task 5 '
                                             cmd+=' --lr 0.005 '
+                                            cmd+=' --neuron-model "LIF" '
+                                            cmd+=' --tau 0.25 '
                                             hidden_neurons=16
                                             if scenario=='task-incre':
                                                 ann_channel=256
+                                                hidden_neurons=16
+                                                cmd+=' --meta 50 '
                                             elif scenario=='class-incre':
                                                 ann_channel=64
+                                                hidden_neurons=32
+                                                cmd+=' --meta 0.5 '
                                         elif dataset == 'pMNIST':
                                             cmd+=' --load-bn '
                                             cmd+=' --task-num 40 ' 
