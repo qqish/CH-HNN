@@ -80,3 +80,6 @@ To train ANNs for learning related-episode knowledge:
 ```
 (3) **Customize the Training Design**:
 (_continue, _enhanced, or _task) in 'manager.py'  to change the training setup for ANNs.
+
+## **Contact**
+If you have any questions or encounter any issues, please feel free to contact: qqshi@mail.tsinghua.edu.cn
