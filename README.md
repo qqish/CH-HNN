@@ -65,6 +65,8 @@ Pretrained ANN models are available in the ANN_Prior directory for the following
 - **Tiny-ImageNet**
 
 Select datasets with the `--dataset` flag and learning scenarios (class-incremental or task-incremental) with the `--scenario` flag.
+> ⚠️ **Note:** The parameters in `manager.py` need to be adjusted according to the selected dataset and scenario.  
+> For detailed configurations, please refer to **Note 7 in the Supplementary Information** of our paper.
 
 The `ANN_Prior` directory also contains ANN models trained on **ImageNet**.
 
