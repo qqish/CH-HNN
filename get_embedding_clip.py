@@ -73,6 +73,7 @@ def get_clip():
 
 model, preprocess = get_clip()
 train_loader, test_loader = get_data_set(preprocess)
+dataset = args.dataset
 
 train_ann_epoch(model, preprocess, train_loader,
                 save_path='.../embeddings/{}_clip_vitl14/train/'.format(dataset))
